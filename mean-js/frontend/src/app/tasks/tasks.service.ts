@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
-  apiBaseUrl: string = environment.apiBaseUrl ?? 'Not found';
+  apiBaseUrl: string = 'http://192.168.49.2:32528/api';
 
   constructor(private readonly http: HttpClient) { }
 

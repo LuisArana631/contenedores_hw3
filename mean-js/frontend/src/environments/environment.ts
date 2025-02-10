@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: process.env["API_BASE_URL"],
+  apiBaseUrl: 'http://192.168.49.2:32213/api',
 };
