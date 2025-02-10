@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  unir-mongo:
+    image: mongo
+    container_name: unir-mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - unir-network
+
+  unir-mongo-express:
+    image: mongo-express
+    container_name: unir-mongo-express
+    ports:
+      - "5000:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: unir-mongo
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin
+    depends_on:
+      - unir-mongo
+    networks:
+      - unir-network
+
+  unir-backend:
+    image: blocnotas/contenedores-unir-backend
+    container_name: unir-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_CNN: mongodb://unir-mongo:27017/devops_unir
+      PORT: 3000
+    depends_on:
+      - unir-mongo
+    networks:
+      - unir-network
+
+  unir-frontend:
+    image: blocnotas/contenedores-unir-frontend
+    container_name: unir-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - unir-backend
+    networks:
+      - unir-network
+
+networks:
+  unir-network:
+    driver: bridge
