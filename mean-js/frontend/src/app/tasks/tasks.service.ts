@@ -7,21 +7,21 @@ import { Observable } from 'rxjs';
 })
 export class TasksService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   fetchTasks(): Observable<any> {
-    return this.http.get('/api/tasks');
+    return this.http.get('http://localhost:3000/api/tasks');
   }
 
   addTask(task: any): Observable<any> {
-    return this.http.post('/api/tasks', task);
+    return this.http.post('http://localhost:3000/api/tasks', task);
   }
 
   updateTask(id: string, task: any): Observable<any> {
-    return this.http.put(`/api/tasks/${id}`, task);
+    return this.http.put(`http://localhost:3000/api/tasks/${id}`, task);
   }
 
   deleteTask(id: string): Observable<any> {
-    return this.http.delete(`/api/tasks/${id}`);
+    return this.http.delete(`/http://localhost:3000api/tasks/${id}`);
   }
 }
