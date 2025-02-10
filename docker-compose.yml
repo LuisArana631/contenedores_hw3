@@ -40,7 +40,7 @@ services:
     image: blocnotas/contenedores-unir-frontend
     container_name: unir-frontend
     ports:
-      - "80:80"
+      - "5001:80"
     depends_on:
       - unir-backend
     networks:
