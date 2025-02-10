@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unir-mongo-express
+  namespace: unir-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unir-mongo-express
+  template:
+    metadata:
+      labels:
+        app: unir-mongo-express
+    spec:
+      containers:
+      - name: mongo-express
+        image: mongo-express
+        env:
+        - name: ME_CONFIG_MONGODB_SERVER
+          value: "unir-mongo"
+        - name: ME_CONFIG_BASICAUTH_USERNAME
+          value: "admin"
+        - name: ME_CONFIG_BASICAUTH_PASSWORD
+          value: "admin"
+        ports:
+        - containerPort: 8081

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unir-backend
+  namespace: unir-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unir-backend
+  template:
+    metadata:
+      labels:
+        app: unir-backend
+    spec:
+      containers:
+      - name: backend
+        image: blocnotas/contenedores-unir-backend
+        env:
+        - name: DB_CNN
+          value: "mongodb://unir-mongo:27017/devops_unir"
+        - name: PORT
+          value: "3000"
+        ports:
+        - containerPort: 3000

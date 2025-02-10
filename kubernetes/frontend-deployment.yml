@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unir-frontend
+  namespace: unir-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unir-frontend
+  template:
+    metadata:
+      labels:
+        app: unir-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: blocnotas/contenedores-unir-frontend
+        ports:
+        - containerPort: 80

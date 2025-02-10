@@ -3,6 +3,7 @@
 #Custom
 .angular
 .vscode
+.env
 
 # Compiled output
 /dist
