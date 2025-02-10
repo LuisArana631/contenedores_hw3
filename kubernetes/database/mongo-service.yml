@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: unir-mongo
   namespace: unir-namespace
+  labels:
+    app: unir-mongo
 spec:
   type: ClusterIP
   ports:
